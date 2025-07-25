@@ -32,7 +32,7 @@ function SignInForm() {
         )}
 
         <div>
-          <Label htmlFor="password">Email</Label>
+          <Label htmlFor="password">Password</Label>
           <Input type="password" id="password" name="password" />
         </div>
         {!!state?.errors?.password && (

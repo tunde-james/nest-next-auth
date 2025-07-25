@@ -1,10 +1,11 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import z, { json } from 'zod';
+import z from 'zod';
 
 import { FormState } from './type';
 import { LoginFormSchema, SignupFormSchema } from './zod-schemas';
+import { createSession } from './session';
 
 export async function signUp(
   state: FormState,
@@ -68,8 +69,14 @@ export async function signIn(
     };
   }
 
-  // create session for authenticated user
-
   const result = await res.json();
-  console.log({ result });
+
+  await createSession({
+    user: {
+      id: result.id,
+      name: result.name,
+    },
+  });
+
+  redirect('/');
 }
