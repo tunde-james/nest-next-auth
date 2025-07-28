@@ -105,4 +105,11 @@ export class AuthService {
       refreshToken,
     };
   }
+
+  async validateGoogleUser(googleUser: CreateUserDto) {
+    const user = await this.userService.findUserByEmail(googleUser.email);
+    if (user) return user;
+
+    return await this.userService.create(googleUser);
+  }
 }

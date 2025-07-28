@@ -7,6 +7,15 @@ const SignInPage = () => {
 
       <SignInForm />
 
+      <hr />
+
+      <a
+        href={`${process.env.BACKEND_URL}/auth/google/login`}
+        className="border px-4 py-2 rounded bg-sky-600 text-white"
+      >
+        Sign In With Google
+      </a>
+
       <div className=" flex flex-col gap-2"></div>
     </div>
   );
