@@ -8,12 +8,15 @@ import { UserService } from 'src/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { LocalStrategy } from './strategies/local.strategy';
 import jwtConfig from './config/jwt.config';
-import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import refreshJwtConfig from './config/refresh-jwt.config';
+import { RefreshJwtStrategy } from './strategies/refresh-token.strategies';
 
 @Module({
   imports: [
     JwtModule.registerAsync(jwtConfig.asProvider()),
     ConfigModule.forFeature(jwtConfig),
+    ConfigModule.forFeature(refreshJwtConfig),
   ],
   controllers: [AuthController],
   providers: [
@@ -21,7 +24,8 @@ import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
     UserService,
     PrismaService,
     LocalStrategy,
-    JwtAuthGuard,
+    JwtStrategy,
+    RefreshJwtStrategy,
   ],
 })
 export class AuthModule {}

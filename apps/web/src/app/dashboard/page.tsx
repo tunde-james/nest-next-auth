@@ -7,6 +7,8 @@ async function DashboardPage() {
     redirect('/auth/sign-in');
   }
 
+  console.log({ session });
+
   return <div></div>;
 }
 
