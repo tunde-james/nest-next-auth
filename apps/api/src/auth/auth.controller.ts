@@ -38,7 +38,11 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('sign-in')
   async login(@Request() req) {
-    return await this.authService.login(req.user.id, req.user.name);
+    return await this.authService.login(
+      req.user.id,
+      req.user.name,
+      req.user.role,
+    );
   }
 
   @Roles('ADMIN', 'EDITOR')
@@ -69,13 +73,18 @@ export class AuthController {
   async googleCallback(@Request() req, @Res() res: Response) {
     // console.log('Google User', req.user);
 
-    const userData = await this.authService.login(req.user.id, req.user.name);
+    const userData = await this.authService.login(
+      req.user.id,
+      req.user.name,
+      req.user.role,
+    );
 
     const frontendUrl = this.configService.get<string>('FRONTEND_URL');
 
     const params = new URLSearchParams({
       userId: String(userData.id),
       name: userData.name,
+      role: userData.role,
       accessToken: userData.accessToken,
       refreshToken: userData.refreshToken,
     });
@@ -85,7 +94,7 @@ export class AuthController {
     );
 
     // res.redirect(
-    //   `${frontendUrl}/api/auth/google/callback?userId=${userData.id}&name=${userData.name}&accessToken=${userData.accessToken}&refreshToken=${userData.refreshToken}`,
+    //   `${frontendUrl}/api/auth/google/callback?userId=${userData.id}&name=${userData.name}&accessToken=${userData.accessToken}&refreshToken=${userData.refreshToken}&role=${userData.role}`,
     // );
   }
 

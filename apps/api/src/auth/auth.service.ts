@@ -12,6 +12,7 @@ import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { UserService } from 'src/user/user.service';
 import { AuthJwtPayload } from './types/jwt-payload';
 import refreshJwtConfig from './config/refresh-jwt.config';
+import { Role } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -45,7 +46,7 @@ export class AuthService {
     };
   }
 
-  async login(userId: number, name: string) {
+  async login(userId: number, name: string, role: Role) {
     const { accessToken, refreshToken } = await this.generateToken(userId);
     const hashedRT = await argon2.hash(refreshToken);
 
@@ -54,6 +55,7 @@ export class AuthService {
     return {
       id: userId,
       name: name,
+      role,
       accessToken,
       refreshToken,
     };
