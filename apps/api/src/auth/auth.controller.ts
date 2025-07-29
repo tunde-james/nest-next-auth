@@ -19,6 +19,8 @@ import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
 import { RefreshAuthGuard } from './guards/refresh-auth/refresh-auth.guard';
 import { GoogleAuthGuard } from './guards/google-auth/google-auth.guard';
 import { Public } from './decorators/public.decorator';
+import { Roles } from './decorators/roles.decorator';
+import { RolesGuard } from './guards/roles/roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -39,6 +41,9 @@ export class AuthController {
     return await this.authService.login(req.user.id, req.user.name);
   }
 
+  @Roles('ADMIN', 'EDITOR')
+  // @UseGuards(RolesGuard)
+  // @UseGuards(JwtAuthGuard) // Always put the auth guard before the roles guard
   @Get('protected')
   getAll(@Request() req) {
     return {

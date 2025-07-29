@@ -15,6 +15,7 @@ import { RefreshJwtStrategy } from './strategies/refresh-token.strategies';
 import googleOauthConfig from './config/google-oauth.config';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
+import { RolesGuard } from './guards/roles/roles.guard';
 
 @Module({
   imports: [
@@ -36,6 +37,10 @@ import { JwtAuthGuard } from './guards/jwt-auth/jwt-auth.guard';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })
