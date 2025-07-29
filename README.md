@@ -37,15 +37,15 @@ This project implements a full-stack authentication and authorization workflow u
 
 DATABASE_URL=your_db_url
 
-JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=your_jwt_expiry_time
-REFRESH_JWT_SECRET=your_refresh_jwt_secret
-REFRESH_JWT_EXPIRES_IN=your_refresh_jwt_expiry_time
-FRONTEND_URL=your-app-frontend-url
+- JWT_SECRET=your_jwt_secret
+- JWT_EXPIRES_IN=your_jwt_expiry_time
+- REFRESH_JWT_SECRET=your_refresh_jwt_secret
+- REFRESH_JWT_EXPIRES_IN=your_refresh_jwt_expiry_time
+- FRONTEND_URL=your-app-frontend-url
 
-GOOGLE_CLIENT_ID=your_google_client
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_CALLBACK_URL=your_google_callback_url
+- GOOGLE_CLIENT_ID=your_google_client
+- GOOGLE_CLIENT_SECRET=your_google_client_secret
+- GOOGLE_CALLBACK_URL=your_google_callback_url
 
 ### Frontend
 
@@ -57,9 +57,9 @@ GOOGLE_CALLBACK_URL=your_google_callback_url
 
 - Environment Variables:
 
-BACKEND_URL=your-app-backend-url
-FRONTEND_URL=your-app-frontend-url
-SESSION_SECRET_KEY=your_session_secret_key
+- BACKEND_URL=your-app-backend-url
+- FRONTEND_URL=your-app-frontend-url
+- SESSION_SECRET_KEY=your_session_secret_key
 
 ### Project Structure
 
